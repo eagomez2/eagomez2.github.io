@@ -1,0 +1,57 @@
+---
+// Project pages keep the old WordPress addresses: /YYYY/MM/DD/slug/
+import Base from '../../../../layouts/Base.astro';
+import { getProjects, projectUrl, type Project } from '../../../../lib/data';
+import { render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const out = [];
+  for (const cat of ['software', 'sound'] as const) {
+    const list = await getProjects(cat);
+    list.forEach((p, i) => {
+      const [, year, month, day, slug] = projectUrl(p).split('/');
+      out.push({ params: { year, month, day, slug }, props: { project: p, prev: list[i - 1], next: list[i + 1] } });
+    });
+  }
+  return out;
+}
+
+interface Props { project: Project; prev?: Project; next?: Project }
+const { project, prev, next } = Astro.props;
+const { Content } = await render(project);
+const isSoftware = project.data.category === 'software';
+const back = isSoftware
+  ? { href: '/portfolio-software-hardware/', label: 'Software & Hardware' }
+  : { href: '/portfolio-sound-music/', label: 'Sound & Music' };
+const heading = project.data.heading || project.data.title;
+
+// Search-result description: the first paragraph of the page, shortened.
+function summary(html = ''): string {
+  const para = html.match(/<p>([\s\S]*?)<\/p>/g)?.map((p) => p.replace(/<[^>]+>/g, '').replace(/&amp;/g, '&').replace(/\s+/g, ' ').trim()).find((t) => t.length > 40);
+  const text = para || `${heading}: ${project.data.subtitle}`;
+  return text.length > 160 ? text.slice(0, 157).replace(/\s+\S*$/, '') + '…' : text;
+}
+const description = summary(project.body);
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'CreativeWork',
+  name: heading,
+  description,
+  image: new URL(project.data.cover, Astro.site).href,
+  url: new URL(projectUrl(project), Astro.site).href,
+  creator: { '@type': 'Person', name: 'Esteban Gómez', url: Astro.site?.href },
+};
+---
+<Base title={heading} current={project.data.category} description={description} image={project.data.cover} jsonLd={jsonLd}>
+  <article class="section" style="gap: 24px">
+    <div class="project-head">
+      <a class="back" href={`${back.href}#${project.id}`}>← {back.label}</a>
+      <div class="sec-head"><h1>{heading}</h1></div>
+    </div>
+    <div class="prose"><Content /></div>
+    <nav class="project-nav" aria-label="More projects">
+      <span>{prev && <a href={projectUrl(prev)}>← {prev.data.title}</a>}</span>
+      <span>{next && <a href={projectUrl(next)}>{next.data.title} →</a>}</span>
+    </nav>
+  </article>
+</Base>

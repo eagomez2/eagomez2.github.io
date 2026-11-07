@@ -1,0 +1,19 @@
+---
+import Base from '../layouts/Base.astro';
+import { site } from '../lib/data';
+const c = site.contact;
+const [before] = c.text.split('download my resume.');
+---
+<Base title="Contact" current="contact" description="Get in touch with Esteban Gómez.">
+  <section class="section contact">
+    <div class="sec-head"><h1>Contact</h1></div>
+    <p>{before}<a href={site.resume} target="_blank" rel="noopener">download my resume</a>.</p>
+    <p>{c.signoff}<br>{c.sign}</p>
+    <div class="contact-list">
+      <div class="contact-row"><span class="k">Email</span><a href={`mailto:${c.email}`}>{c.email}</a></div>
+      {site.social.map((s) => (
+        <div class="contact-row"><span class="k">{s.label}</span><a href={s.href} target="_blank" rel="noopener">{s.short}</a></div>
+      ))}
+    </div>
+  </section>
+</Base>

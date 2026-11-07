@@ -1,0 +1,163 @@
+# Publications, shown in this order on the Research & Talks page (newest first).
+# To add one, copy an entry and paste it at the top.
+
+- title: Performance and Complexity Trade-off Optimization of Speech Models During Training
+  type: Paper
+  year: '2026'
+  authors: Esteban Gómez, Tom Bäckström
+  venue: Preprint. This work has been submitted to the IEEE for possible publication
+  links:
+  - label: Download
+    href: https://arxiv.org/abs/2601.13704
+  keywords: Speech machine learning, low-complexity, voice activity detection, deep fake detection
+  abstract: |
+    In speech machine learning, neural network models are typically designed by choosing an architecture with fixed layer sizes and structure. These models are then trained to maximize performance on metrics aligned with the task’s objective. While the overall architecture is usually guided by prior knowledge of the task, the sizes of individual layers are often chosen heuristically. However, this approach does not guarantee an optimal trade-off between performance and computational complexity; consequently, post hoc methods such as weight quantization or model pruning are typically employed to reduce computational cost. This occurs because stochastic gradient descent (SGD) methods can only optimize differentiable functions, while factors influencing computational complexity, such as layer sizes and floating-point operations per second (FLOP/s), are non-differentiable and require modifying the model structure during training. We propose a reparameterization technique based on feature noise injection that enables joint optimization of performance and computational complexity during training using SGD-based methods. Unlike traditional pruning methods, our approach allows the model size to be dynamically optimized for a target performance-complexity trade-off, without relying on heuristic criteria to select which weights or structures to remove. We demonstrate the effectiveness of our method through three case studies, including a synthetic example and two practical real-world applications: voice activity detection and audio anti-spoofing. The code related to our work is publicly available to encourage further research.
+  bibtex: "@misc{gomez2026,\ntitle={Performance and Complexity Trade-off Optimization of Speech Models During Training}, \nauthor={Esteban Gómez and Tom Bäckström},\nyear={2026},\neprint={2601.13704},\narchivePrefix={arXiv},\nprimaryClass={cs.SD},\nurl={https://arxiv.org/abs/2601.13704}, \n}\n"
+- title: Real-time Joint Noise Suppression and Bandwidth Extension of Noisy Reverberant Wideband Speech
+  type: Paper
+  year: '2024'
+  authors: Esteban Gómez, Tom Bäckström
+  venue: Published at the International Workshop on Acoustic Signal Enhancement (IWAENC 2024, Aalborg, Denmark)
+  links:
+  - label: Download
+    href: https://research.aalto.fi/en/publications/real-time-joint-noise-suppression-and-bandwidth-extension-of-nois
+  - label: Demo
+    href: https://eagomez2.github.io/rt-joint-ns-bwe/
+  keywords: Bandwidth extension, noise suppression, real-time, deep learning, multitasking
+  abstract: |
+    Artificially extending the bandwidth of speech in band-limited scenarios using 16kHz (known as wideband) or lower sample rates such as in VoIP or some Bluetooth applications, can significantly improve its perceptual quality. Typically, clean speech is assumed as input to estimate the missing spectral information. However, such an assumption falls short if it has been contaminated by noise or reverb, resulting in audible artifacts. We propose a low-complexity multitasking neural network capable of performing noise suppression and bandwidth extension 16kHz to 48kHz (fullband) in real-time on a CPU, mitigating such issues even if the noise cannot be completely removed from the input. Instead of employing a monolithic model, we adopt a modular approach and complexity reduction methods that result in a more compact model than the sum of its parts while improving its performance.
+  bibtex: "@INPROCEEDINGS{10694458,\n  author={Gómez, Esteban and Bäckström, Tom},\n  booktitle={2024 18th International Workshop on Acoustic Signal Enhancement (IWAENC)}, \n  title={Real-Time Joint Noise Suppression and Bandwidth Extension of Noisy Reverberant Wideband Speech}, \n  year={2024},\n  volume={},\n  number={},\n  pages={6-10},\n  keywords={Training;Computational modeling;Noise reduction;Noise;Neural networks;Speech enhancement;Real-time systems;Acoustics;Complexity theory;Wideband;Bandwidth extension;noise suppression;real-time;deep learning;multitasking},\n  doi={10.1109/IWAENC61483.2024.10694458}}\n"
+- title: IDVoice Team System Description for ASVSpoof5 Challenge
+  type: Paper
+  year: '2024'
+  authors: Alexandr Alenin, Andrei Balykin, Esteban Gómez, Rostislav Makarov, Pavel Malov, Anton Okhotnikov, Nikita Torgashov, Ivan Yakovlev
+  venue: Published at the INTERSPEECH 2024 (Kos, Greece)
+  links:
+  - label: Download
+    href: https://www.isca-archive.org/asvspoof_2024/okhotnikov24_asvspoof.html
+  abstract: |
+    ASVSpoof is a series of community-led challenges aimed at advancing the development of robust automatic speaker verification (ASV) systems and anti-spoofing countermeasures (CM). The fifth edition of the challenge focuses on speech deepfakes and features two tracks: Track 1: Robust Speech Deepfake De- tection (DF) and Track 2: Spoofing-Robust Automatic Speaker Verification (SASV). In this report, we describe in detail the system submitted by the IDVoice team to the open condition of the SASV track (Track 2). Our solution is a score-level fusion of independently trained CM and ASV systems. The CM system is composed of six neural networks of four distinct architectures, while the ASV system is a ResNet-based model. Our final submission achieves a 0.1156 min a-DCF on the challenge evaluation set.
+  bibtex: |
+    @inproceedings{okhotnikov24_asvspoof,
+    title = {IDVoice team system description for ASVSpoof5 Challenge},
+    author = {Anton Okhotnikov and Ivan Yakovlev and Nikita Torgashov and Rostislav Makarov and Esteban Gómez and Pavel Malov and Alexandr Alenin and Andrei Balykin},
+    year = {2024},
+    booktitle = {The Automatic Speaker Verification Spoofing Countermeasures Workshop (ASVspoof 2024)},
+    pages = {43--47},
+    doi = {10.21437/ASVspoof.2024-7},
+    }
+- title: Low-complexity Real-time Neural Network for Blind Bandwidth Extension of Wideband Speech
+  type: Paper
+  year: '2023'
+  authors: Esteban Gómez, Mohamad Hassan Vali, Tom Bäckström
+  venue: Published at the European Signal Processing Conference (EUSIPCO23, Helsinki, Finland)
+  links:
+  - label: Download
+    href: https://research.aalto.fi/en/publications/low-complexity-real-time-neural-network-for-blind-bandwidth-exten
+  - label: Demo
+    href: https://eagomez2.github.io/bbwexnet/
+  keywords: Bandwidth extension, speech processing, real-time, deep learning
+  abstract: |
+    Speech is streamed at 16 kHz or lower sample rates in many applications (e.g. VoIP, Bluetooth headsets). Extending its bandwidth can produce significant quality improvements. We introduce BBWEXNet, a lightweight neural network that performs blind bandwidth extension of speech from 16 kHz (wideband) to 48 kHz (fullband) in real-time in CPU. Our low latency approach allows running the model with a maximum algorithmic delay of 16 ms, enabling end-to-end communication in streaming services and scenarios where the GPU is busy or unavailable. We propose a series of optimizations that take advantage of the U-Net architecture and vector quantization methods commonly used in speech coding, to produce a model whose performance is comparable to previous real-time solutions, but approximately halving the memory footprint and computational cost. Moreover, we show that the model complexity can be further reduced with a marginal impact on the perceived output quality.
+  bibtex: |
+    @inproceedings{d7d9d2b9624e420a8973d6d832b48f50,
+    title = "Low-complexity Real-time Neural Network for Blind Bandwidth Extension of Wideband Speech",
+    abstract = "Speech is streamed at 16 kHz or lower sample rates in many applications (e.g. VoIP, Bluetooth headsets). Extending its bandwidth can produce significant quality improvements. We introduce BBWEXNet, a lightweight neural network that performs blind bandwidth extension of speech from 16 kHz (wideband) to 48 kHz (fullband) in real-time in CPU. Our low latency approach allows running the model with a maximum algorithmic delay of 16 ms, enabling end-to-end communication in streaming services and scenarios where the GPU is busy or unavailable. We propose a series of optimizations that take advantage of the U-Net architecture and vector quantization methods commonly used in speech coding, to produce a model whose performance is comparable to previous real-time solutions, but approximately halving the memory footprint and computational cost. Moreover, we show that the model complexity can be further reduced with a marginal impact on the perceived output quality.",
+    keywords = "bandwidth extension, speech processing, real-time, deep learning",
+    author = "{G{\'o}mez Mellado}, Esteban and Mohammadhassan Vali and Tom B{\"a}ckstr{\"o}m",
+    year = "2023",
+    month = sep,
+    day = "4",
+    doi = "10.23919/EUSIPCO58844.2023.10290072",
+    language = "English",
+    booktitle = "31st European Signal Processing Conference Proceedings",
+    publisher = "EURASIP – European Association For Signal Processing",
+    address = "Belgium",
+    note = "European Signal Processing Conference, EUSIPCO ; Conference date: 04-09-2023 Through 08-09-2023",
+    url = "https://eusipco2023.org/",
+    }
+- title: Temporal Evolution of Makam and Usul Relationship in Turkish Makam
+  type: Paper
+  year: '2022'
+  authors: Benedikt Wimmer, Esteban Gómez (*)
+  venue: Published at journal Musicological Annual by Znanstvena založba Filozofske fakultete Univerze v Ljubljani (University of Ljubljana, Faculty of Arts, Aškerčeva 2, 1000 Ljubljana, Slovenia).
+  note: (*) Equal contribution
+  links:
+  - label: Download
+    href: https://journals.uni-lj.si/MuzikoloskiZbornik/article/download/12407/11052
+  - label: Code
+    href: https://github.com/eagomez2/turkish-makam-temporal-analysis
+  keywords: Music information retrieval, Turkish makam, computational musicology
+  abstract: |
+    Turkish makam music is transmitted orally and learned through repetition. Most previous computational analysis works focus either on makam (its melodic structure) or usul (its rhythmic pattern) separately. The work presented in this paper performs a combined analysis to explore the descriptive potential of the relationship between these in over 600 makam pieces.
+  bibtex: |
+    @article{Wimmer_Gómez_2022,
+        title={Temporal Evolution of Makam and Usul Relationship in Turkish Makam},
+        volume={58},
+        url={https://journals.uni-lj.si/MuzikoloskiZbornik/article/view/12407},
+        DOI={10.4312/mz.58.2.107-119},
+        number={2},
+        journal={Musicological Annual},
+        author={Wimmer, Benedikt and Gómez Esteban},
+        year={2022},
+        month={Dec.},
+        pages={107–119}
+    }
+- title: Deep Noise Suppression for Real Time Speech Enhancement in a Single Channel Wide Band Scenario
+  type: Thesis
+  year: '2021'
+  authors: Esteban Gómez
+  supervisors: Andrés Pérez, Pritish Chadna
+  links:
+  - label: Download
+    href: https://zenodo.org/records/5554193
+  - label: Code
+    href: https://github.com/eagomez2/upf-smc-speech-enhancement-thesis
+  keywords: Speech enhancement, speech quality, noise suppression, deep learning, real-time applications
+  abstract: |
+    Speech enhancement can be regarded as a dual task that addresses two important issues of degraded speech: Speech quality and speech intelligibility. Improved speech quality can reduce listener’s fatigue, whereas improved speech intelligibility can reduce the listener’s effort to understand and extract meaning from speech. This work is focused on speech quality in a real time context. Algorithms that improve speech quality are sometimes referred to as noise suppression algorithms, since they enhance quality by suppressing the background noise of the degraded speech. Improving state of the art noise suppression algorithms could lead to significant benefits to several applications such as video conferencing systems, phone calls or speech recognition systems. Real time capable algorithms are especially important for devices with a limited processing power and physical constraints that cannot make use of large architectures, such as hearing aids or wearables. This work uses a deep learning based approach to expand on two previously proposed architectures in the context of the Deep Noise Suppression Challenge carried out by Microsoft. This challenge has provided datasets and resources to teams of researchers with the common goal of fostering the research on the aforementioned topic. The outcome of this thesis can be divided into three main contributions: First, an extended comparison between six variants of the two selected models, considering performance, computational complexity and real time efficiency analyses. Secondly, making available an open source implementation of one of the proposed architectures as well as a framework translation of an existing implementation. Finally, proposed variants that outperform the previously defined models in terms of denoising performance, complexity and real time efficiency.
+  bibtex: "@mastersthesis{GomezSMCSE2021,\n  author = {Esteban Gómez}, \n  title  = {{Deep Noise Suppression for Real Time Speech Enhancement in a Single Channel Wide Band Scenario}},\n  school = {Universitat Pompeu Fabra},\n  year   = 2021,\n}\n"
+- title: Introduction to Speech Processing
+  type: eBook
+  year: '2022'
+  authors: Tom Bäckstrom, Okko Räsänen, Abraham Zewoudie, Pablo Zarazaga, Liisa Koivusalo, Sneha Das, Esteban Gómez, Mariem Bouafif, Daniel Ramos
+  links:
+  - label: View
+    href: https://speechprocessingbook.aalto.fi/
+  abstract: |
+    This is an open access and creative commons book of speech processing, intended as pedagogical material for engineering students. Hosted by Aalto University.
+  bibtex: |
+    @book{itsp2022,
+       title = {Introduction to Speech Processing},
+       edition = 2,
+       year = 2022,
+       author = {Tom Bäckström and Okko Räsänen and Abraham Zewoudie and Pablo Pérez Zarazaga and Liisa Koivusalo and Sneha Das and Esteban Gómez Mellado and Marieum Bouafif Mansali and Daniel Ramos and Sudarsana Kadiri and Paavo Alku},
+       url = {https://speechprocessingbook.aalto.fi},
+       doi = {10.5281/zenodo.6821775}
+    }
+- title: Designing a Flexible Workflow for Complex Real-Time Interactive Performances
+  type: Paper
+  year: '2016'
+  authors: Esteban Gómez, Javier Jaimovich
+  venue: Published at New Interfaces for Musical Expression (NIME2016, Brisbane, Australia)
+  links:
+  - label: Download
+    href: https://www.nime.org/proceedings/2016/nime2016_paper0060.pdf
+  keywords: Interactive performances, Max/MSP, Emovere, OSC
+  abstract: |
+    This paper presents the design of a Max/MSP flexible workflow framework built for complex real-time interactive performances. This system was developed for Emovere, an interdisciplinary piece for dance, biosignals, sound and visuals, yet it was conceived to accommodate interactive performances of different nature and of heterogeneous technical requirements, which we believe to represent a common underlying structure among these. The work presented in this document proposes a framework that takes care of the signal input/output stages, as well as storing and recalling presets and scenes, thus allowing the user to focus on the programming of interaction models and sound synthesis or sound processing. Results are presented with Emovere as an example case, discussing the advantages and further challenges that this framework offers for other performance scenarios.
+  bibtex: |
+    @inproceedings{Gnicode243mez2016,
+      title = {Designing a Flexible Workflow for Complex Real-Time Interactive Performances},
+      author = {G\'{o}mez, Esteban and Jaimovich, Javier},
+      booktitle = {Proceedings of the International Conference on New Interfaces for Musical Expression},
+      year = {2016},
+      address = {Brisbane, Australia},
+      pages = {305--309},
+      publisher = {Queensland Conservatorium Griffith University},
+      volume = {16},
+      isbn = {978-1-925455-13-7},
+      track = {Papers},
+      url = {http://www.nime.org/proceedings/2016/nime2016_paper0060.pdf},
+      doi = {10.5281/zenodo.1176018}
+    }

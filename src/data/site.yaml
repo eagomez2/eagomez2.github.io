@@ -1,0 +1,51 @@
+# Site-wide settings and the About page.
+# googleAnalyticsId: paste your GA4 Measurement ID (looks like G-XXXXXXXXXX). Leave empty to disable analytics.
+# Text in bio can use **bold**.
+# Skills: one comma-separated line per group. Programming languages get a coloured dot (colours in src/lib/tags.ts).
+
+name: Esteban Gómez
+tagline: audio researcher & programmer
+url: https://www.estebangomez.me
+googleAnalyticsId: ''
+resume: /files/esteban-gomez-resume.pdf
+bio: I am Esteban Gómez, **researcher**, **audio programmer** and **sound engineer** currently based in Brussels, Belgium. With a broad range of interests, my experience spans real-time machine learning audio research, professional music recording and production for international live events, audio plugin development, and music performance. I am fascinated by everything that can be programmed/produce sound or has knobs/buttons/strings.
+skills:
+- label: Research interests
+  items: Real-time Machine Learning, Speech Processing, Noise Suppression, Artificial Bandwidth Extension, Dereverberation, Audio Watermarking, Speaker Verification, Antispoofing, Generative AI, Music Information Retrieval, Sound Synthesis, Immersive Audio, Safety, Privacy and Ethics in Data-driven algorithms
+- label: Programming / Development
+  items: C, C++, Rust, Python, PyTorch, TensorFlow, ONNX, MATLAB, JUCE, Max/MSP
+- label: Music / Sound Engineering / Sound Design
+  items: Pro Tools, Ableton Live, Reaper, WaveLab, Sibelius
+degrees:
+- degree: PhD in Electrical Engineering
+  school: Aalto University
+  years: 2022 – present
+- degree: Master in Sound and Music Computing
+  school: Universitat Pompeu Fabra
+  years: 2020 – 2021
+- degree: Master of Music in Music Production, Technology and Innovation
+  school: Berklee College of Music
+  years: 2016 – 2017
+- degree: Bachelor of Arts with Concentration in Sound
+  school: Universidad de Chile
+  years: 2010 – 2015
+social:
+- label: LinkedIn
+  href: https://www.linkedin.com/in/eagomez/
+  short: linkedin.com/in/eagomez
+- label: GitHub
+  href: https://github.com/eagomez2/
+  short: github.com/eagomez2
+- label: Scholar
+  href: https://scholar.google.es/citations?user=jXzFrJYAAAAJ
+  short: Google Scholar
+- label: SoundCloud
+  href: https://soundcloud.com/eagomez
+  short: soundcloud.com/eagomez
+contact:
+  text: Feel free to connect with me through any of the provided communication channels below; I’m always eager to engage with fellow researchers, audio programmers, machine learning practitioners, etc. Should you have any collaboration ideas, speaking opportunities, professional inquiries or workshops in mind, please don’t hesitate to download my resume.
+  signoff: Looking forward to hearing from you,
+  sign: Esteban
+  email: esteban.gomezmellado@aalto.fi
+githubNote: You may find additional publicly available projects and code repositories in my GitHub Page.
+copyright: © Copyright - Esteban Gómez - Audio Researcher & Programmer

@@ -1,0 +1,24 @@
+# Lists on the Research & Talks page, shown in this order.
+
+talks:
+- Neural networks for real-time speech processing. Sound Engineering, University of Chile, 2022.
+- Introduction to artificial intelligence in audio. Sound Engineering, University of Chile, 2021.
+- Real-time Audio Technology Implementation Workshop, Sound Technology, Duoc UC, 2020.
+- About Immersive Audio Techniques and Technologies, Audiovisual Programming, Sound Engineering, University of Chile, 2020.
+- Plugin development in Max for Live. Formula to implementation. Advanced Topics in Audio Technology, Berklee College of Music, 2017.
+- Designing Max for Live plugins for live performances. Ableton User Group Valencia, Berklee College of Music, 2017.
+- Introduction to Gen in Max and Max for Live. Advanced Topics in Audio Technology, Berklee College of Music, 2017.
+- Interactive Platform Design in Max/MSP. A/V Arts Fest, Startup Chile and Arts Faculty, University of Chile, 2016.
+teaching:
+- Sound and Speech Processing, Aalto University (2023).
+- Differential Equations, Universidad de Chile (2013 – 2014).
+- Calculus III (Multivariable Calculus), Universidad de Chile (2013 – 2014).
+- Calculus I (Differential Calculus), Universidad de Chile (2012 – 2014).
+- Calculus II (Integral Calculus ), Universidad de Chile (2012 – 2014).
+articles:
+- title: Profiling neural networks with moduleprofiler in python
+  href: https://medium.com/@eagomez2/profiling-neural-networks-with-moduleprofiler-in-python-c566fe2cf896
+- title: Inspecting audio file collections with sndls
+  href: https://medium.com/@eagomez2/inspecting-audio-file-collections-with-sndls-aace1c4242ed
+- title: Tracking machine learning experiments with NuBoard
+  href: https://medium.com/@eagomez2/tracking-machine-learning-experiments-with-nuboard-cebb0daf9088

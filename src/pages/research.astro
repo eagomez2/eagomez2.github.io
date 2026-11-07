@@ -1,0 +1,108 @@
+---
+import Base from '../layouts/Base.astro';
+import { site, publications, research } from '../lib/data';
+
+const ME = site.name;
+function authors(a: string) {
+  const i = a.indexOf(ME);
+  return i < 0 ? { pre: a, me: '', post: '' } : { pre: a.slice(0, i), me: ME, post: a.slice(i + ME.length) };
+}
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: 'Publications by Esteban Gómez',
+  itemListElement: publications.map((p, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    item: {
+      '@type': p.type === 'Thesis' ? 'Thesis' : p.type === 'eBook' ? 'Book' : 'ScholarlyArticle',
+      name: p.title,
+      author: p.authors.split(',').map((n) => ({ '@type': 'Person', name: n.replace(/\(.*?\)/g, '').trim() })).filter((a) => a.name),
+      datePublished: String(p.year),
+      ...(p.links[0] ? { url: p.links[0].href } : {}),
+      ...(p.keywords ? { keywords: p.keywords } : {}),
+    },
+  })),
+};
+---
+<Base title="Research & Talks" current="research" description="Publications, guest lectures, talks and teaching by Esteban Gómez: real-time machine learning for speech and audio, noise suppression, bandwidth extension and more." jsonLd={jsonLd}>
+  <section class="section" style="gap: 16px">
+    <div class="sec-head"><h1>Publications</h1></div>
+    <div class="pubs">
+      {publications.map((p, i) => {
+        const a = authors(p.authors);
+        return (
+          <article class="pub">
+            <div class="pub-meta">
+              <span class="pub-year mono">{p.year}</span>
+              <span class="pub-type">{p.type}</span>
+            </div>
+            <div class="pub-body">
+              <h2 class="pub-title">{p.title}</h2>
+              <div class="pub-authors">{a.pre}<strong>{a.me}</strong>{a.post}</div>
+              {p.note && <div class="pub-small">{p.note}</div>}
+              {p.supervisors && <div class="pub-sup">Supervisor(s): {p.supervisors}</div>}
+              {p.venue && <div class="pub-venue">{p.venue}</div>}
+              <div class="pub-actions">
+                {p.abstract && <button type="button" class="pill" aria-expanded="false" aria-controls={`abs-${i}`} data-toggle="abstract">Abstract</button>}
+                {p.links.map((l) => <a class="pill link" href={l.href} target="_blank" rel="noopener">{l.label} ↗</a>)}
+                {p.bibtex && <button type="button" class="pill" aria-expanded="false" aria-controls={`cite-${i}`} data-toggle="cite">Cite</button>}
+              </div>
+              {p.abstract && (
+                <div class="pub-abstract" id={`abs-${i}`} hidden>
+                  <p>{p.abstract.trim()}</p>
+                  {p.keywords && <div class="muted">Keywords: {p.keywords}.</div>}
+                </div>
+              )}
+              {p.bibtex && (
+                <div id={`cite-${i}`} hidden>
+                  <pre class="bibtex">{p.bibtex.trimEnd()}</pre>
+                  <button type="button" class="pill copy-btn" data-copy>Copy BibTeX</button>
+                </div>
+              )}
+            </div>
+          </article>
+        );
+      })}
+    </div>
+  </section>
+
+  <section class="two-col">
+    <div class="list-block">
+      <h2>Guest lectures and talks</h2>
+      <ul>{research.talks.map((x) => <li>{x}</li>)}</ul>
+    </div>
+    <div class="stack">
+      <div class="list-block">
+        <h2>Teaching assistantships / mentorships</h2>
+        <ul>{research.teaching.map((x) => <li>{x}</li>)}</ul>
+      </div>
+      <div class="list-block">
+        <h2>Medium articles</h2>
+        <ul>{research.articles.map((a) => <li><a href={a.href} target="_blank" rel="noopener">{a.title}</a></li>)}</ul>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>('[data-toggle]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const panel = document.getElementById(btn.getAttribute('aria-controls') || '');
+      if (!panel) return;
+      const open = btn.getAttribute('aria-expanded') !== 'true';
+      btn.setAttribute('aria-expanded', String(open));
+      panel.hidden = !open;
+      if (btn.dataset.toggle === 'abstract') btn.textContent = open ? 'Hide abstract' : 'Abstract';
+    });
+  });
+  document.querySelectorAll<HTMLButtonElement>('[data-copy]').forEach((btn) => {
+    btn.addEventListener('click', async () => {
+      const pre = btn.parentElement?.querySelector('pre');
+      if (!pre) return;
+      try { await navigator.clipboard.writeText(pre.textContent || ''); btn.textContent = 'Copied'; }
+      catch { btn.textContent = 'Select the text to copy'; }
+      setTimeout(() => (btn.textContent = 'Copy BibTeX'), 2000);
+    });
+  });
+</script>

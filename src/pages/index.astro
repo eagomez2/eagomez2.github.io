@@ -1,0 +1,58 @@
+---
+import Base from '../layouts/Base.astro';
+import { site, inline } from '../lib/data';
+import { LANGUAGE_COLORS, splitTags } from '../lib/tags';
+
+// Tells search engines who this site is about (shown in Google's profile panels).
+const plainBio = site.bio.replace(/\*\*/g, '');
+const person = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: site.name,
+  url: site.url + '/',
+  image: site.url + '/images/profile.jpg',
+  jobTitle: 'Audio Researcher & Programmer',
+  description: plainBio,
+  email: 'mailto:' + site.contact.email,
+  affiliation: { '@type': 'CollegeOrUniversity', name: 'Aalto University' },
+  alumniOf: site.degrees.map((d) => ({ '@type': 'CollegeOrUniversity', name: d.school })),
+  knowsAbout: splitTags(site.skills[0].items),
+  sameAs: site.social.map((s) => s.href),
+};
+const website = { '@context': 'https://schema.org', '@type': 'WebSite', name: site.name, url: site.url + '/' };
+---
+<Base current="about" description={plainBio} jsonLd={[person, website] as any}>
+  <section class="section" style="gap: 28px">
+    <div class="sec-head"><h1>Welcome to my website</h1></div>
+    <div class="about-grid">
+      <img class="portrait" src="/images/profile.jpg" alt={`Portrait of ${site.name}`} width="240" height="240">
+      <div class="about-text">
+        <p class="bio" set:html={inline(site.bio)} />
+        {site.skills.map((k, gi) => (
+          <div class="skill">
+            <div class="label" id={`skill-${gi}`}>{k.label}</div>
+            <ul class="tags" aria-labelledby={`skill-${gi}`}>
+              {splitTags(k.items).map((name) => {
+                const color = LANGUAGE_COLORS[name];
+                if (gi === 0) return <li class="tag tag-interest">{name}</li>;
+                if (color) return <li class="tag tag-lang"><span class="dot" style={`background:${color}`} aria-hidden="true"></span>{name}</li>;
+                return <li class="tag">{name}</li>;
+              })}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="sec-head"><h2>Academic degrees</h2></div>
+    <div class="degrees">
+      {site.degrees.map((g) => (
+        <div class="degree">
+          <div class="years mono">{g.years}</div>
+          <div><div class="degree-name">{g.degree}</div><div class="muted">{g.school}</div></div>
+        </div>
+      ))}
+    </div>
+  </section>
+</Base>

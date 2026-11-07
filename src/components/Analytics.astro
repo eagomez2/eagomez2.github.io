@@ -1,0 +1,44 @@
+---
+// Google Analytics 4, loaded only after the visitor accepts.
+// Set googleAnalyticsId in src/data/site.yaml (or the PUBLIC_GA_ID build variable) to turn it on.
+import { site } from '../lib/data';
+// Never loads during `npm run dev`, so local testing is not counted.
+const id = import.meta.env.DEV ? '' : (import.meta.env.PUBLIC_GA_ID || site.googleAnalyticsId || '').trim();
+---
+{id && (
+  <script is:inline define:vars={{ id }}>
+    (function () {
+      function load() {
+        var s = document.createElement('script');
+        s.async = true;
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=' + id;
+        document.head.appendChild(s);
+        window.dataLayer = window.dataLayer || [];
+        window.gtag = function () { dataLayer.push(arguments); };
+        gtag('js', new Date());
+        gtag('config', id);
+      }
+      var choice = null;
+      try { choice = localStorage.getItem('analytics-consent'); } catch (e) {}
+      if (choice === 'granted') { load(); return; }
+      if (choice === 'denied') return;
+      document.addEventListener('DOMContentLoaded', function () {
+        var box = document.createElement('div');
+        box.className = 'consent';
+        box.setAttribute('role', 'region');
+        box.setAttribute('aria-label', 'Analytics consent');
+        box.innerHTML = '<p>This site uses Google Analytics to count visits. Is that OK?</p>' +
+          '<div class="consent-actions"><button type="button" class="btn-primary" data-consent="granted">Allow</button>' +
+          '<button type="button" data-consent="denied">Decline</button></div>';
+        document.body.appendChild(box);
+        box.addEventListener('click', function (e) {
+          var v = e.target && e.target.getAttribute && e.target.getAttribute('data-consent');
+          if (!v) return;
+          try { localStorage.setItem('analytics-consent', v); } catch (err) {}
+          box.remove();
+          if (v === 'granted') load();
+        });
+      });
+    })();
+  </script>
+)}

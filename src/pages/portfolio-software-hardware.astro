@@ -1,0 +1,15 @@
+---
+import Base from '../layouts/Base.astro';
+import Gallery from '../components/Gallery.astro';
+import { site } from '../lib/data';
+const gh = site.social.find((s) => s.label === 'GitHub');
+const [before] = site.githubNote.split('GitHub Page');
+---
+<Base title="Software & Hardware" current="software" description="Software and hardware projects by Esteban Gómez.">
+  <Gallery category="software" title="Software and hardware projects">
+    <div class="note-box">
+      <a class="handle" href={gh?.href} target="_blank" rel="noopener">/eagomez2</a>
+      <span>{before}<a href={gh?.href} target="_blank" rel="noopener">GitHub Page</a>.</span>
+    </div>
+  </Gallery>
+</Base>
