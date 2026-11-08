@@ -70,7 +70,7 @@ const nav = [
       <nav aria-label="Main" class="nav">
         {nav.map((n) => (
           <a href={n.href} class="nav-item" aria-current={n.id === current ? 'page' : undefined} target={n.external ? '_blank' : undefined} rel={n.external ? 'noopener' : undefined}>
-            <span class="nav-label">{n.label}{n.external && <span class="nav-pdf"> PDF ↗</span>}</span>
+            <span class="nav-label">{n.label}</span>
             <span class="nav-sub">{n.sub}</span>
           </a>
         ))}
@@ -101,7 +101,7 @@ const nav = [
       <nav aria-label="Main" class="mobile-nav" id="mobile-nav" hidden>
         {nav.map((n) => (
           <a href={n.href} class="nav-item" aria-current={n.id === current ? 'page' : undefined} target={n.external ? '_blank' : undefined} rel={n.external ? 'noopener' : undefined}>
-            <span class="nav-label">{n.label}{n.external && <span class="nav-pdf"> PDF ↗</span>}</span>
+            <span class="nav-label">{n.label}</span>
             <span class="nav-sub">{n.sub}</span>
           </a>
         ))}
