@@ -1,6 +1,8 @@
 ---
 import Base from '../layouts/Base.astro';
 import { site, publications, research } from '../lib/data';
+import { formatBibtex } from '../lib/bibtex';
+import LinkIcon from '../components/LinkIcon.astro';
 
 const ME = site.name;
 function authors(a: string) {
@@ -46,18 +48,19 @@ const jsonLd = {
               <div class="pub-actions">
                 {p.abstract && <button type="button" class="pill" aria-expanded="false" aria-controls={`abs-${i}`} data-panel>Abstract</button>}
                 {p.bibtex && <button type="button" class="pill" aria-expanded="false" aria-controls={`cite-${i}`} data-panel>Cite</button>}
-                {p.links.map((l) => <a class="pill link" href={l.href} target="_blank" rel="noopener">{l.label} ↗</a>)}
+                {p.links.map((l) => <a class="pill link" href={l.href} target="_blank" rel="noopener"><LinkIcon label={l.label} />{l.label}</a>)}
               </div>
               {p.abstract && (
                 <div class="pub-abstract" id={`abs-${i}`} hidden>
                   <p>{p.abstract.trim()}</p>
                   {p.keywords && <div class="muted">Keywords: {p.keywords}.</div>}
+                  <button type="button" class="pill copy-btn" data-copy="p" data-label="Copy abstract">Copy abstract</button>
                 </div>
               )}
               {p.bibtex && (
                 <div class="pub-cite" id={`cite-${i}`} hidden>
-                  <pre class="bibtex">{p.bibtex.trimEnd()}</pre>
-                  <button type="button" class="pill copy-btn" data-copy>Copy BibTeX</button>
+                  <pre class="bibtex">{formatBibtex(p.bibtex)}</pre>
+                  <button type="button" class="pill copy-btn" data-copy="pre" data-label="Copy BibTeX">Copy BibTeX</button>
                 </div>
               )}
             </div>
@@ -97,11 +100,12 @@ const jsonLd = {
   });
   document.querySelectorAll<HTMLButtonElement>('[data-copy]').forEach((btn) => {
     btn.addEventListener('click', async () => {
-      const pre = btn.parentElement?.querySelector('pre');
-      if (!pre) return;
-      try { await navigator.clipboard.writeText(pre.textContent || ''); btn.textContent = 'Copied'; }
+      const el = btn.parentElement?.querySelector(btn.dataset.copy || 'pre');
+      if (!el) return;
+      const label = btn.dataset.label || 'Copy';
+      try { await navigator.clipboard.writeText((el.textContent || '').trim()); btn.textContent = 'Copied'; }
       catch { btn.textContent = 'Select the text to copy'; }
-      setTimeout(() => (btn.textContent = 'Copy BibTeX'), 2000);
+      setTimeout(() => (btn.textContent = label), 2000);
     });
   });
 </script>

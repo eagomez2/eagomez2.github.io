@@ -1,19 +1,29 @@
 ---
 import Base from '../layouts/Base.astro';
+import SocialIcon from '../components/SocialIcon.astro';
 import { site } from '../lib/data';
 const c = site.contact;
 const [before] = c.text.split('download my resume.');
+// Same channels as the old contact page: email, LinkedIn, GitHub and Google Scholar.
+const cards = [
+  { icon: 'email', label: 'Email', value: c.email, href: `mailto:${c.email}` },
+  ...site.social.filter((s) => s.label !== 'SoundCloud').map((s) => ({ icon: s.label, label: s.label, value: s.short, href: s.href })),
+];
 ---
 <Base title="Contact" current="contact" description="Get in touch with Esteban Gómez.">
   <section class="section contact">
     <div class="sec-head"><h1>Contact</h1></div>
     <p>{before}<a href={site.resume} target="_blank" rel="noopener">download my resume</a>.</p>
     <p>{c.signoff}<br>{c.sign}</p>
-    <div class="contact-list">
-      <div class="contact-row"><span class="k">Email</span><a href={`mailto:${c.email}`}>{c.email}</a></div>
-      {site.social.map((s) => (
-        <div class="contact-row"><span class="k">{s.label}</span><a href={s.href} target="_blank" rel="noopener">{s.short}</a></div>
+    <ul class="contact-cards">
+      {cards.map((k) => (
+        <li>
+          <a class="contact-card" href={k.href} target={k.icon === 'email' ? undefined : '_blank'} rel={k.icon === 'email' ? undefined : 'noopener'}>
+            <span class="contact-icon"><SocialIcon name={k.icon} size={22} /></span>
+            <span class="contact-text"><span class="k">{k.label}</span><span class="v">{k.value}</span></span>
+          </a>
+        </li>
       ))}
-    </div>
+    </ul>
   </section>
 </Base>

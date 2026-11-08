@@ -24,6 +24,7 @@ const nav = [
   { id: 'research', href: '/research/', label: 'Research & Talks', sub: 'Academic & Industry' },
   { id: 'software', href: '/portfolio-software-hardware/', label: 'Software & Hardware', sub: 'Software & hardware projects' },
   { id: 'sound', href: '/portfolio-sound-music/', label: 'Sound & Music', sub: 'Music & sound engineering' },
+  { id: 'resume', href: site.resume, label: 'Resume', sub: 'Download my resume', external: true },
   { id: 'contact', href: '/contact/', label: 'Contact', sub: 'Get in touch' },
 ];
 ---
@@ -68,15 +69,11 @@ const nav = [
       </div>
       <nav aria-label="Main" class="nav">
         {nav.map((n) => (
-          <a href={n.href} class="nav-item" aria-current={n.id === current ? 'page' : undefined}>
-            <span class="nav-label">{n.label}</span>
+          <a href={n.href} class="nav-item" aria-current={n.id === current ? 'page' : undefined} target={n.external ? '_blank' : undefined} rel={n.external ? 'noopener' : undefined}>
+            <span class="nav-label">{n.label}{n.external && <span class="nav-pdf"> PDF ↗</span>}</span>
             <span class="nav-sub">{n.sub}</span>
           </a>
         ))}
-        <a href={site.resume} class="nav-item nav-resume" target="_blank" rel="noopener">
-          <span class="nav-label">Resume <span class="nav-pdf">PDF ↗</span></span>
-          <span class="nav-sub">Download my resume</span>
-        </a>
       </nav>
       <div class="side-foot">
         <div class="side-social">
@@ -103,12 +100,11 @@ const nav = [
       </div>
       <nav aria-label="Main" class="mobile-nav" id="mobile-nav" hidden>
         {nav.map((n) => (
-          <a href={n.href} class="nav-item" aria-current={n.id === current ? 'page' : undefined}>
-            <span class="nav-label">{n.label}</span>
+          <a href={n.href} class="nav-item" aria-current={n.id === current ? 'page' : undefined} target={n.external ? '_blank' : undefined} rel={n.external ? 'noopener' : undefined}>
+            <span class="nav-label">{n.label}{n.external && <span class="nav-pdf"> PDF ↗</span>}</span>
             <span class="nav-sub">{n.sub}</span>
           </a>
         ))}
-        <a href={site.resume} class="nav-item" target="_blank" rel="noopener"><span class="nav-label">Resume <span class="nav-pdf">PDF ↗</span></span></a>
       </nav>
     </header>
 
