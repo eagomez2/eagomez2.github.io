@@ -16,7 +16,11 @@ cover: "/images/projects/eagm-ambient-and-electronic/cover.jpg"
 <div class="col col-2-3">
 <p>Some of my own attempts at making electronic and ambient music.</p>
 <ul>
-<li>Composition, programming, recording, mixing and mastering: Esteban Gómez</li>
+<li>Composition: Esteban Gómez</li>
+<li>Programming: Esteban Gómez</li>
+<li>Recording: Esteban Gómez</li>
+<li>Mixing: Esteban Gómez</li>
+<li>Mastering: Esteban Gómez</li>
 </ul>
 </div>
 </div>

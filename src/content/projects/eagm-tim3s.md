@@ -14,7 +14,13 @@ cover: "/images/projects/eagm-tim3s/cover.jpg"
 <figure><img src="/images/projects/eagm-tim3s/image-1.jpg" alt="EAGM Tim3s cover: the letters EAGM over a mosaic of small images" width="500" height="313" loading="lazy"></figure>
 </div>
 <div class="col col-2-3">
-<p>Composition, programming, recording, mixing and mastering: Esteban Gómez</p>
+<ul>
+<li>Composition: Esteban Gómez</li>
+<li>Programming: Esteban Gómez</li>
+<li>Recording: Esteban Gómez</li>
+<li>Mixing: Esteban Gómez</li>
+<li>Mastering: Esteban Gómez</li>
+</ul>
 </div>
 </div>
 
