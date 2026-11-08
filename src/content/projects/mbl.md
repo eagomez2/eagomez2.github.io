@@ -18,6 +18,8 @@ cover: "/images/projects/mbl/cover.jpg"
 </div>
 </div>
 
+<h3>Pictures</h3>
+
 <div class="cols">
 <div class="col col-1-2">
 <figure><img src="/images/projects/mbl/image-2.jpg" alt="PA-62 rack-mounted power amplifier" width="1400" height="875" loading="lazy"></figure>

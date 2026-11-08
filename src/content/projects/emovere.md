@@ -20,6 +20,8 @@ cover: "/images/projects/emovere/cover.jpg"
 </div>
 </div>
 
+<h3>Video</h3>
+
 <div class="video"><iframe src="https://www.youtube-nocookie.com/embed/xysH_EmDKtY" title="Video player" loading="lazy" allow="fullscreen; picture-in-picture" allowfullscreen></iframe></div>
 
 <h3>Press and related links</h3>

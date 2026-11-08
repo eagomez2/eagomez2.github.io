@@ -22,7 +22,7 @@ Copy an entry in `src/data/publications.yaml`, paste it at the top and change th
 
 ### Add a project
 
-1. Put a square-ish cover image in `public/images/projects/<slug>/cover.jpg`.
+1. Put a cover image in `public/images/projects/<slug>/cover.jpg`. Covers look best at 16:10 (for example 800×500 pixels). Any other shape also works: the whole image is always shown, never cropped, and the empty space around it is filled automatically with a blurred copy of the same image.
 2. Copy any file in `src/content/projects/`, rename it to `<slug>.md` and edit the top block:
 
 ```yaml
@@ -45,6 +45,8 @@ cover: "/images/projects/<slug>/cover.jpg"
 ```
 
 Give every image a short description in `alt="…"`. It helps image search and people using screen readers. The page's search-result description is taken from its first paragraph automatically.
+
+Every picture inside a `<figure>` on a project page can be clicked (or tapped) to see it larger. Nothing extra is needed.
 
 To put an image beside text, wrap them in `<div class="cols"><div class="col col-1-3">…</div><div class="col col-2-3">…</div></div>`.
 

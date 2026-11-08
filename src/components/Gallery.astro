@@ -1,6 +1,9 @@
 ---
 // Project list: a numbered index (like a record's track list). Each row is a link;
 // on laptop a large cover beside the list follows the row under the mouse.
+// Covers are never cropped: frames are 16:10. An image of another shape is
+// shown whole, and the empty space around it is filled with a blurred copy of
+// the same image (see README).
 import { getProjects, projectUrl } from '../lib/data';
 interface Props { category: 'software' | 'sound'; title: string }
 const { category, title } = Astro.props;
@@ -13,29 +16,26 @@ const items = (await getProjects(category)).map((p) => ({ id: p.id, title: p.dat
       {items.map((it, i) => (
         <li><a class="gc-row" href={it.href} data-img={it.cover} data-title={it.title} data-sub={it.subtitle}>
           <span class="gc-num mono">{String(i + 1).padStart(2, '0')}</span>
-          <img class="gc-thumb" src={it.cover} alt="" width="72" height="72">
+          <span class="gc-thumb gc-fit" style={`--bg:url(${it.cover})`}><img src={it.cover} alt="" loading="lazy"></span>
           <span class="gc-text"><span class="gc-title">{it.title}</span><span class="gc-sub">{it.subtitle}</span>
             {it.tags.length > 0 && <span class="gc-tags">{it.tags.map((t) => <span class="tag">{t}</span>)}</span>}</span>
           <span class="gc-go" aria-hidden="true">→</span>
         </a></li>
       ))}
     </ol>
-    <div class="gc-preview" aria-hidden="true"><img src={items[0].cover} alt="" width="420" height="420" data-gc-img>
+    <div class="gc-preview" aria-hidden="true"><div class="gc-frame gc-fit" data-gc-frame style={`--bg:url(${items[0].cover})`}><img src={items[0].cover} alt="" data-gc-img></div>
       <div class="gc-cap"><span class="gc-title" data-gc-title>{items[0].title}</span><span class="gc-sub" data-gc-sub>{items[0].subtitle}</span></div></div>
   </div>
   <slot />
 </section>
 <style is:global>
-  .gc-wrap { display: grid; grid-template-columns: minmax(0, 1fr) 380px; gap: 40px; align-items: start; }
+  .gc-wrap { display: grid; grid-template-columns: minmax(0, 1fr) 460px; gap: 40px; align-items: start; }
   .gc-list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
-  .gc-row { display: grid; grid-template-columns: 32px 72px minmax(0, 1fr) 20px; gap: 18px; align-items: center; padding: 14px 8px; border-bottom: 1px solid var(--line); color: var(--fg); text-decoration: none; border-radius: 6px; transition: background .12s; }
+  .gc-row { display: grid; grid-template-columns: 32px 112px minmax(0, 1fr) 20px; gap: 18px; align-items: center; padding: 14px 8px; border-bottom: 1px solid var(--line); color: var(--fg); text-decoration: none; border-radius: 6px; transition: background .12s; }
   .gc-row:hover, .gc-row:focus-visible { background: var(--side); }
   .gc-num { font-size: 13px; color: var(--muted); }
-  .gc-thumb { width: 72px; height: 72px; object-fit: cover; border-radius: 6px; display: block; background: var(--code); }
-  .gc-text { display: flex; flex-direction: column; min-width: 0; line-height: 1.3; }
-  .gc-title { font-weight: 600; }
-  .gc-text { gap: 3px; }
-  .gc-title { font-size: 17px; }
+  .gc-text { display: flex; flex-direction: column; gap: 3px; min-width: 0; line-height: 1.3; }
+  .gc-title { font-weight: 600; font-size: 17px; }
   .gc-sub { font-size: 15px; color: var(--muted); }
   .gc-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 5px; }
   .gc-tags .tag { font-size: 12.5px; padding: 1px 9px; color: var(--muted); }
@@ -43,16 +43,31 @@ const items = (await getProjects(category)).map((p) => ({ id: p.id, title: p.dat
   .gc-go { color: var(--muted); transition: transform .15s, color .15s; }
   .gc-row:hover .gc-go { color: var(--accent); transform: translateX(3px); }
   .gc-preview { position: sticky; top: 32px; }
-  .gc-preview img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 12px; display: block; box-shadow: 0 12px 30px var(--shadow); background: var(--code); }
+
+  /* Fixed-shape frame: the image is shown whole; any space left around it
+     is filled with a blurred copy of the same image (set in --bg). */
+  .gc-fit { position: relative; display: block; overflow: hidden; aspect-ratio: 16 / 10; background: var(--code); }
+  .gc-fit::before { content: ''; position: absolute; inset: -20%; background: var(--bg) center / cover; filter: blur(18px) saturate(1.1); opacity: .85; }
+  .gc-fit img { position: relative; display: block; width: 100%; height: 100%; object-fit: contain; }
+  .gc-thumb { width: 112px; border-radius: 6px; }
+  .gc-thumb::before { filter: blur(8px) saturate(1.1); }
+  .gc-frame { border-radius: 12px; box-shadow: 0 12px 30px var(--shadow); }
+  .gc-frame::before { filter: blur(28px) saturate(1.1); }
+
   @media (max-width: 1100px) { .gc-wrap { grid-template-columns: minmax(0, 1fr); } .gc-preview { display: none; } }
-  @media (max-width: 720px) { .gc-row { grid-template-columns: 56px minmax(0, 1fr) 16px; gap: 12px; padding: 8px 4px; } .gc-num { display: none; } .gc-thumb { width: 56px; height: 56px; } .gc-row { align-items: start; } }
+  @media (max-width: 720px) {
+    .gc-row { grid-template-columns: 96px minmax(0, 1fr) 16px; gap: 12px; padding: 8px 4px; align-items: start; }
+    .gc-num { display: none; }
+    .gc-thumb { width: 96px; }
+  }
 </style>
 <script>
   const img = document.querySelector<HTMLImageElement>('[data-gc-img]');
   const ct = document.querySelector<HTMLElement>('[data-gc-title]');
   const cs = document.querySelector<HTMLElement>('[data-gc-sub]');
+  const fr = document.querySelector<HTMLElement>('[data-gc-frame]');
   document.querySelectorAll<HTMLAnchorElement>('.gc-row').forEach((r) => {
-    const show = () => { if (img) img.src = r.dataset.img!; if (ct) ct.textContent = r.dataset.title!; if (cs) cs.textContent = r.dataset.sub!; };
+    const show = () => { if (img) img.src = r.dataset.img!; if (fr) fr.style.setProperty('--bg', `url(${r.dataset.img})`); if (ct) ct.textContent = r.dataset.title!; if (cs) cs.textContent = r.dataset.sub!; };
     r.addEventListener('mouseenter', show); r.addEventListener('focus', show);
   });
 </script>

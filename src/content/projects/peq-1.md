@@ -19,6 +19,8 @@ Although the PCB and design implementation are mine, the schematic was heavily i
 </div>
 </div>
 
+<h3>Pictures</h3>
+
 <div class="cols">
 <div class="col col-1-2">
 <figure><img src="/images/projects/peq-1/image-2.jpg" alt="PEQ-1 prototype being tested next to a laptop and a computer screen" width="1400" height="875" loading="lazy"></figure>

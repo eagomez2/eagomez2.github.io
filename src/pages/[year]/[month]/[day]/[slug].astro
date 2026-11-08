@@ -1,6 +1,7 @@
 ---
 // Project pages keep the old WordPress addresses: /YYYY/MM/DD/slug/
 import Base from '../../../../layouts/Base.astro';
+import Lightbox from '../../../../components/Lightbox.astro';
 import { getProjects, projectUrl, type Project } from '../../../../lib/data';
 import { render } from 'astro:content';
 
@@ -49,6 +50,7 @@ const jsonLd = {
       <div class="sec-head"><h1>{heading}</h1></div>
     </div>
     <div class="prose"><Content /></div>
+    <Lightbox />
     <nav class="project-nav" aria-label="More projects">
       <span>{prev && <a href={projectUrl(prev)}>← {prev.data.title}</a>}</span>
       <span>{next && <a href={projectUrl(next)}>{next.data.title} →</a>}</span>
