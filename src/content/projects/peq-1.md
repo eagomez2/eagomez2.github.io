@@ -5,6 +5,7 @@ subtitle: "RIAA-flexible equalizer"
 category: "software"
 date: "2024-01-12"
 order: 7
+tags: ["DIY", "Hardware", "Equalizer"]
 cover: "/images/projects/peq-1/cover.jpg"
 ---
 

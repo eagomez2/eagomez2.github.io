@@ -5,6 +5,7 @@ subtitle: "Eli Gauden"
 category: "sound"
 date: "2024-01-13"
 order: 5
+tags: ["Mastering"]
 cover: "/images/projects/eli-gauden-look-yonder/cover.jpg"
 ---
 

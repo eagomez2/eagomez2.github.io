@@ -5,6 +5,7 @@ subtitle: "Open-source neural networks profiling package"
 category: "software"
 date: "2024-09-29"
 order: 2
+tags: ["Open source", "Python", "PyTorch"]
 cover: "/images/projects/moduleprofiler/cover.jpg"
 ---
 

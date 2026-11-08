@@ -5,6 +5,7 @@ subtitle: "EAGM"
 category: "sound"
 date: "2024-01-13"
 order: 17
+tags: ["Electric guitar"]
 cover: "/images/projects/covers-and-solos/cover.jpg"
 ---
 

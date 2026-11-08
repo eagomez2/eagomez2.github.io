@@ -5,6 +5,7 @@ subtitle: "M4L audio, MIDI and OSC plugins"
 category: "software"
 date: "2024-01-12"
 order: 5
+tags: ["Max for Live", "MIDI", "OSC"]
 cover: "/images/projects/stranger-devices/cover.png"
 ---
 

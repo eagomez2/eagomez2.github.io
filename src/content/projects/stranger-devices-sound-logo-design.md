@@ -5,6 +5,7 @@ subtitle: "Stranger Devices"
 category: "sound"
 date: "2024-01-13"
 order: 6
+tags: ["Sound design", "Animation"]
 cover: "/images/projects/stranger-devices-sound-logo-design/cover.jpg"
 ---
 

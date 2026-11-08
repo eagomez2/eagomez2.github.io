@@ -5,6 +5,7 @@ subtitle: "Atlas Leap"
 category: "sound"
 date: "2024-01-13"
 order: 4
+tags: ["Recording"]
 cover: "/images/projects/atlas-leap-latin-quarter-ft-victor-mendoza-ii-overhead/cover.png"
 ---
 

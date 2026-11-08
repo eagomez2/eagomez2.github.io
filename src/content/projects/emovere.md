@@ -5,6 +5,7 @@ subtitle: "Real-time data sonification software"
 category: "software"
 date: "2024-01-12"
 order: 9
+tags: ["Max/MSP", "Sonification", "MIDI", "OSC"]
 cover: "/images/projects/emovere/cover.jpg"
 ---
 

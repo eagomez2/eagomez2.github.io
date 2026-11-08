@@ -27,12 +27,13 @@ Copy an entry in `src/data/publications.yaml`, paste it at the top and change th
 
 ```yaml
 ---
-title: "Project name"          # shown under the cover
+title: "Project name"          # shown in the project list
 heading: "Longer page title"   # optional, shown on the project page
-subtitle: "One line"
+subtitle: "One line"            # shown under the title in the list
 category: "software"           # or "sound"
 date: "2026-11-07"             # newest first; also used in the address /2026/11/07/<slug>/
 order: 1                       # only breaks ties between projects with the same date
+tags: ["Open source", "Python"] # optional, shown as small tags in the list
 cover: "/images/projects/<slug>/cover.jpg"
 ---
 ```

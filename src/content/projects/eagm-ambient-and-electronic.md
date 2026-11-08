@@ -5,6 +5,7 @@ subtitle: "EAGM"
 category: "sound"
 date: "2024-01-13"
 order: 16
+tags: ["Composition", "Recording", "Mixing", "Mastering"]
 cover: "/images/projects/eagm-ambient-and-electronic/cover.jpg"
 ---
 

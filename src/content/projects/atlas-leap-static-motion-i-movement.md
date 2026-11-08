@@ -5,6 +5,7 @@ subtitle: "Atlas Leap"
 category: "sound"
 date: "2024-01-13"
 order: 3
+tags: ["Recording"]
 cover: "/images/projects/atlas-leap-static-motion-i-movement/cover.jpg"
 ---
 

@@ -1,69 +1,58 @@
 ---
+// Project list: a numbered index (like a record's track list). Each row is a link;
+// on laptop a large cover beside the list follows the row under the mouse.
 import { getProjects, projectUrl } from '../lib/data';
 interface Props { category: 'software' | 'sound'; title: string }
 const { category, title } = Astro.props;
-const items = (await getProjects(category)).map((p) => ({
-  id: p.id, title: p.data.title, subtitle: p.data.subtitle, cover: p.data.cover, href: projectUrl(p),
-}));
-const first = items[0];
+const items = (await getProjects(category)).map((p) => ({ id: p.id, title: p.data.title, subtitle: p.data.subtitle, cover: p.data.cover, tags: p.data.tags, href: projectUrl(p) }));
 ---
 <section class="section" style="gap: 24px">
   <div class="sec-head"><h1>{title}</h1></div>
-  <div class="featured" aria-live="polite" data-gallery-featured>
-    <img src={first.cover} alt={`Cover of ${first.title}`} width="280" height="280" data-f="img">
-    <div class="featured-info">
-      <div class="featured-pos mono" data-f="pos">1 / {items.length}</div>
-      <h2 class="featured-title" data-f="title">{first.title}</h2>
-      <div class="featured-sub" data-f="sub">{first.subtitle}</div>
-      <div class="featured-actions">
-        <a class="btn-primary" href={first.href} data-f="href">Open project</a>
-        <button type="button" class="round-btn" data-step="-1" aria-label="Previous project"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg></button>
-        <button type="button" class="round-btn" data-step="1" aria-label="Next project"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 6l6 6-6 6"></path></svg></button>
-      </div>
-    </div>
+  <div class="gc-wrap">
+    <ol class="gc-list" aria-label={title}>
+      {items.map((it, i) => (
+        <li><a class="gc-row" href={it.href} data-img={it.cover} data-title={it.title} data-sub={it.subtitle}>
+          <span class="gc-num mono">{String(i + 1).padStart(2, '0')}</span>
+          <img class="gc-thumb" src={it.cover} alt="" width="72" height="72">
+          <span class="gc-text"><span class="gc-title">{it.title}</span><span class="gc-sub">{it.subtitle}</span>
+            {it.tags.length > 0 && <span class="gc-tags">{it.tags.map((t) => <span class="tag">{t}</span>)}</span>}</span>
+          <span class="gc-go" aria-hidden="true">→</span>
+        </a></li>
+      ))}
+    </ol>
+    <div class="gc-preview" aria-hidden="true"><img src={items[0].cover} alt="" width="420" height="420" data-gc-img>
+      <div class="gc-cap"><span class="gc-title" data-gc-title>{items[0].title}</span><span class="gc-sub" data-gc-sub>{items[0].subtitle}</span></div></div>
   </div>
-  <ul class="covers" aria-label={title}>
-    {items.map((it, i) => (
-      <li>
-        <a class="cover" href={it.href} aria-pressed={i === 0 ? 'true' : 'false'} data-i={i} data-id={it.id} data-title={it.title} data-sub={it.subtitle} data-img={it.cover}>
-          <img src={it.cover} alt="" width="160" height="160" loading={i < 12 ? 'eager' : 'lazy'}>
-          <span class="cover-text"><span class="cover-title">{it.title}</span><span class="cover-sub">{it.subtitle}</span></span>
-        </a>
-      </li>
-    ))}
-  </ul>
   <slot />
 </section>
-
+<style is:global>
+  .gc-wrap { display: grid; grid-template-columns: minmax(0, 1fr) 380px; gap: 40px; align-items: start; }
+  .gc-list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+  .gc-row { display: grid; grid-template-columns: 32px 72px minmax(0, 1fr) 20px; gap: 18px; align-items: center; padding: 14px 8px; border-bottom: 1px solid var(--line); color: var(--fg); text-decoration: none; border-radius: 6px; transition: background .12s; }
+  .gc-row:hover, .gc-row:focus-visible { background: var(--side); }
+  .gc-num { font-size: 13px; color: var(--muted); }
+  .gc-thumb { width: 72px; height: 72px; object-fit: cover; border-radius: 6px; display: block; background: var(--code); }
+  .gc-text { display: flex; flex-direction: column; min-width: 0; line-height: 1.3; }
+  .gc-title { font-weight: 600; }
+  .gc-text { gap: 3px; }
+  .gc-title { font-size: 17px; }
+  .gc-sub { font-size: 15px; color: var(--muted); }
+  .gc-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 5px; }
+  .gc-tags .tag { font-size: 12.5px; padding: 1px 9px; color: var(--muted); }
+  .gc-cap { display: flex; flex-direction: column; gap: 2px; margin-top: 14px; }
+  .gc-go { color: var(--muted); transition: transform .15s, color .15s; }
+  .gc-row:hover .gc-go { color: var(--accent); transform: translateX(3px); }
+  .gc-preview { position: sticky; top: 32px; }
+  .gc-preview img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 12px; display: block; box-shadow: 0 12px 30px var(--shadow); background: var(--code); }
+  @media (max-width: 1100px) { .gc-wrap { grid-template-columns: minmax(0, 1fr); } .gc-preview { display: none; } }
+  @media (max-width: 720px) { .gc-row { grid-template-columns: 56px minmax(0, 1fr) 16px; gap: 12px; padding: 8px 4px; } .gc-num { display: none; } .gc-thumb { width: 56px; height: 56px; } .gc-row { align-items: start; } }
+</style>
 <script>
-  // Covers are plain links (they work without JavaScript). With JavaScript, a click
-  // shows the project in the panel above; the "Open project" button opens its page.
-  const panel = document.querySelector<HTMLElement>('[data-gallery-featured]');
-  const covers = Array.from(document.querySelectorAll<HTMLAnchorElement>('.cover'));
-  if (panel && covers.length) {
-    const f = (k: string) => panel.querySelector<HTMLElement>(`[data-f="${k}"]`)!;
-    let cur = 0;
-    const show = (i: number, focus = false) => {
-      cur = (i + covers.length) % covers.length;
-      const c = covers[cur];
-      covers.forEach((x, j) => x.setAttribute('aria-pressed', String(j === cur)));
-      const img = f('img') as HTMLImageElement;
-      img.src = c.dataset.img!; img.alt = `Cover of ${c.dataset.title}`;
-      f('pos').textContent = `${cur + 1} / ${covers.length}`;
-      f('title').textContent = c.dataset.title!;
-      f('sub').textContent = c.dataset.sub!;
-      (f('href') as HTMLAnchorElement).href = c.href;
-      history.replaceState(null, '', `#${c.dataset.id}`);
-      if (focus && matchMedia('(max-width: 720px)').matches) panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    };
-    covers.forEach((c, i) => c.addEventListener('click', (e) => {
-      if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
-      e.preventDefault();
-      show(i, true);
-    }));
-    panel.querySelectorAll<HTMLButtonElement>('[data-step]').forEach((b) =>
-      b.addEventListener('click', () => show(cur + Number(b.dataset.step))));
-    const start = covers.findIndex((c) => `#${c.dataset.id}` === location.hash);
-    if (start > 0) show(start);
-  }
+  const img = document.querySelector<HTMLImageElement>('[data-gc-img]');
+  const ct = document.querySelector<HTMLElement>('[data-gc-title]');
+  const cs = document.querySelector<HTMLElement>('[data-gc-sub]');
+  document.querySelectorAll<HTMLAnchorElement>('.gc-row').forEach((r) => {
+    const show = () => { if (img) img.src = r.dataset.img!; if (ct) ct.textContent = r.dataset.title!; if (cs) cs.textContent = r.dataset.sub!; };
+    r.addEventListener('mouseenter', show); r.addEventListener('focus', show);
+  });
 </script>

@@ -5,6 +5,7 @@ subtitle: "Musikeon"
 category: "sound"
 date: "2024-01-13"
 order: 8
+tags: ["Sound design", "Animation"]
 cover: "/images/projects/sound-logo-design/cover.jpg"
 ---
 

@@ -5,6 +5,7 @@ subtitle: "Musikeon"
 category: "sound"
 date: "2024-01-13"
 order: 7
+tags: ["Camera", "Sound", "Video editing"]
 cover: "/images/projects/musikeon-pedagogia-pianistica/cover.jpg"
 ---
 

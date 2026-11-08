@@ -5,6 +5,7 @@ subtitle: "Command-line pipelines defined in YAML"
 category: "software"
 date: "2026-10-02"
 order: 2
+tags: ["Open source", "Command line", "YAML", "Pipelines"]
 cover: "/images/projects/recp/cover.jpg"
 ---
 

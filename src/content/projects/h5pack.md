@@ -5,6 +5,7 @@ subtitle: "Pack and inspect HDF5 audio datasets"
 category: "software"
 date: "2026-10-02"
 order: 1
+tags: ["Open source", "Python", "HDF5", "Audio datasets"]
 cover: "/images/projects/h5pack/cover.jpg"
 ---
 

@@ -5,6 +5,7 @@ subtitle: "DIY guitar and bass gear"
 category: "software"
 date: "2024-01-12"
 order: 6
+tags: ["DIY", "Hardware", "MIDI"]
 cover: "/images/projects/mbl/cover.jpg"
 ---
 

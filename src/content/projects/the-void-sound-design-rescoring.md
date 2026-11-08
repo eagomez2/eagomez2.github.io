@@ -5,6 +5,7 @@ subtitle: "The Void"
 category: "sound"
 date: "2024-01-13"
 order: 12
+tags: ["Sound design"]
 cover: "/images/projects/the-void-sound-design-rescoring/cover.jpg"
 ---
 

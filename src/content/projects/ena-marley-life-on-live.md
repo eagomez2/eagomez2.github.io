@@ -5,6 +5,7 @@ subtitle: "Ena Marley"
 category: "sound"
 date: "2024-01-13"
 order: 9
+tags: ["Mastering"]
 cover: "/images/projects/ena-marley-life-on-live/cover.jpg"
 ---
 

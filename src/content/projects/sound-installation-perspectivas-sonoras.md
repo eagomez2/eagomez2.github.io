@@ -5,6 +5,7 @@ subtitle: "Perspectivas sonoras"
 category: "sound"
 date: "2024-01-13"
 order: 13
+tags: ["Sound installation"]
 cover: "/images/projects/sound-installation-perspectivas-sonoras/cover.jpg"
 ---
 

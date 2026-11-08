@@ -5,6 +5,7 @@ subtitle: "A/V heritage management software"
 category: "software"
 date: "2024-01-12"
 order: 8
+tags: ["Web app", "Archives", "Heritage"]
 cover: "/images/projects/ezplus/cover.jpg"
 ---
 

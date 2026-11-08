@@ -5,6 +5,7 @@ subtitle: "Chilean music heritage"
 category: "software"
 date: "2024-01-12"
 order: 3
+tags: ["Web platform", "Digitisation", "Heritage"]
 cover: "/images/projects/archivo-asuar/cover.png"
 ---
 

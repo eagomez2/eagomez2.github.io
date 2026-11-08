@@ -5,6 +5,7 @@ subtitle: "Transformers"
 category: "sound"
 date: "2024-01-13"
 order: 11
+tags: ["Sound design"]
 cover: "/images/projects/transformers-sound-design-rescoring/cover.jpg"
 ---
 

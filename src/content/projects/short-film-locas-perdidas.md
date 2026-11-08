@@ -5,6 +5,7 @@ subtitle: "Locas perdidas"
 category: "sound"
 date: "2024-01-13"
 order: 14
+tags: ["Field recording"]
 cover: "/images/projects/short-film-locas-perdidas/cover.jpg"
 ---
 

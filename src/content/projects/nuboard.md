@@ -5,6 +5,7 @@ subtitle: "Local experiment tracker for ML"
 category: "software"
 date: "2026-10-14"
 order: 1
+tags: ["Open source", "Python", "Machine learning", "Experiment tracking"]
 cover: "/images/projects/nuboard/cover.jpg"
 ---
 

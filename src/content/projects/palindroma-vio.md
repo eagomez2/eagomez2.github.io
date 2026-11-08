@@ -5,6 +5,7 @@ subtitle: "Palindroma"
 category: "sound"
 date: "2024-01-13"
 order: 1
+tags: ["Mastering"]
 cover: "/images/projects/palindroma-vio/cover.jpg"
 ---
 

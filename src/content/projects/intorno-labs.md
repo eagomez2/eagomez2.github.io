@@ -5,6 +5,7 @@ subtitle: "3D audio plugins toolkit"
 category: "software"
 date: "2024-01-12"
 order: 4
+tags: ["Max for Live", "3D audio", "Plugins"]
 cover: "/images/projects/intorno-labs/cover.jpg"
 ---
 

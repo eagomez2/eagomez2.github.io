@@ -5,6 +5,7 @@ subtitle: "Manu Linois"
 category: "sound"
 date: "2024-01-13"
 order: 2
+tags: ["Recording"]
 cover: "/images/projects/manu-linois-unfinished-business/cover.jpg"
 ---
 

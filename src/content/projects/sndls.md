@@ -5,6 +5,7 @@ subtitle: "Open-source audio-friendly ls tool"
 category: "software"
 date: "2025-04-21"
 order: 1
+tags: ["Open source", "Command line", "Audio"]
 cover: "/images/projects/sndls/cover.jpg"
 ---
 
