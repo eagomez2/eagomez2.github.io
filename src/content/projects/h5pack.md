@@ -11,7 +11,7 @@ cover: "/images/projects/h5pack/cover.jpg"
 
 <div class="cols">
 <div class="col col-1-4">
-<figure><img src="/images/projects/h5pack/cover.jpg" alt="h5pack logo: a waveform turning into stacked bars inside a dark circle" width="900" height="900" loading="lazy"></figure>
+<figure><img src="/images/projects/h5pack/logo.jpg" alt="h5pack logo: a waveform turning into stacked bars inside a dark circle" width="900" height="900" loading="lazy"></figure>
 </div>
 <div class="col col-3-4">
 <p><code>h5pack</code> is a utility made to pack, analyze and unpack HDF5 audio datasets using data and annotations of various sources. It was made to go from raw files to HDF5 files and back in a robust, consistent and simple way.</p>

@@ -11,7 +11,7 @@ cover: "/images/projects/recp/cover.jpg"
 
 <div class="cols">
 <div class="col col-1-4">
-<figure><img src="/images/projects/recp/cover.jpg" alt="recp logo: a chef's hat with a terminal prompt inside a dark circle" width="900" height="900" loading="lazy"></figure>
+<figure><img src="/images/projects/recp/logo.jpg" alt="recp logo: a chef's hat with a terminal prompt inside a dark circle" width="900" height="900" loading="lazy"></figure>
 </div>
 <div class="col col-3-4">
 <p><code>recp</code> (short for recipe) runs recipes: <code>.yaml</code> files that group shell commands into steps. Commands can be generated from templates, take values from environment variables or prompts, run in parallel and skip outputs that already exist, which is useful when processing large datasets.</p>

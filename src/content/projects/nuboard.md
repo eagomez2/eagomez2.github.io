@@ -11,7 +11,7 @@ cover: "/images/projects/nuboard/cover.jpg"
 
 <div class="cols">
 <div class="col col-1-4">
-<figure><img src="/images/projects/nuboard/cover.jpg" alt="NuBoard logo: a red arch on a cream rounded square" width="900" height="900" loading="lazy"></figure>
+<figure><img src="/images/projects/nuboard/logo.jpg" alt="NuBoard logo: a red arch on a cream rounded square" width="900" height="900" loading="lazy"></figure>
 </div>
 <div class="col col-3-4">
 <p><code>nuboard</code> is a fast, local, folder-based experiment tracker and viewer for machine learning training. It logs your training runs with three Python calls, keeps every run as a plain folder on disk, and opens thousands of them in a fast viewer that runs on your own machine. There is no account to create, no server to keep running and no database to back up.</p>
