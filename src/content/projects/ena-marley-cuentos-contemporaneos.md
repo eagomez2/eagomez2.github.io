@@ -18,8 +18,6 @@ cover: "/images/projects/ena-marley-cuentos-contemporaneos/cover.jpg"
 <ul>
 <li>Artist: Ena Marley</li>
 <li>Genre: Contemporary</li>
-<li>Live recording: –</li>
-<li>Mixing: –</li>
 <li>Mastering: Esteban Gómez</li>
 <li>Album cover: Aga Więckowska</li>
 </ul>
