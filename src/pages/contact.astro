@@ -19,7 +19,7 @@ const cards = [
       {cards.map((k) => (
         <li>
           <a class="contact-card" href={k.href} target={k.icon === 'email' ? undefined : '_blank'} rel={k.icon === 'email' ? undefined : 'noopener'}>
-            <span class="contact-icon"><SocialIcon name={k.icon} size={22} /></span>
+            <span class="contact-icon"><SocialIcon name={k.icon} size={28} /></span>
             <span class="contact-text"><span class="k">{k.label}</span><span class="v">{k.value}</span></span>
           </a>
         </li>
