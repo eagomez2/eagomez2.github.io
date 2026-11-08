@@ -44,9 +44,9 @@ const jsonLd = {
               {p.supervisors && <div class="pub-sup">Supervisor(s): {p.supervisors}</div>}
               {p.venue && <div class="pub-venue">{p.venue}</div>}
               <div class="pub-actions">
-                {p.abstract && <button type="button" class="pill" aria-expanded="false" aria-controls={`abs-${i}`} data-toggle="abstract">Abstract</button>}
+                {p.abstract && <button type="button" class="pill" aria-expanded="false" aria-controls={`abs-${i}`} data-panel>Abstract</button>}
+                {p.bibtex && <button type="button" class="pill" aria-expanded="false" aria-controls={`cite-${i}`} data-panel>Cite</button>}
                 {p.links.map((l) => <a class="pill link" href={l.href} target="_blank" rel="noopener">{l.label} ↗</a>)}
-                {p.bibtex && <button type="button" class="pill" aria-expanded="false" aria-controls={`cite-${i}`} data-toggle="cite">Cite</button>}
               </div>
               {p.abstract && (
                 <div class="pub-abstract" id={`abs-${i}`} hidden>
@@ -55,7 +55,7 @@ const jsonLd = {
                 </div>
               )}
               {p.bibtex && (
-                <div id={`cite-${i}`} hidden>
+                <div class="pub-cite" id={`cite-${i}`} hidden>
                   <pre class="bibtex">{p.bibtex.trimEnd()}</pre>
                   <button type="button" class="pill copy-btn" data-copy>Copy BibTeX</button>
                 </div>
@@ -67,33 +67,32 @@ const jsonLd = {
     </div>
   </section>
 
-  <section class="two-col">
-    <div class="list-block">
-      <h2>Guest lectures and talks</h2>
-      <ul>{research.talks.map((x) => <li>{x}</li>)}</ul>
-    </div>
-    <div class="stack">
-      <div class="list-block">
-        <h2>Teaching assistantships / mentorships</h2>
-        <ul>{research.teaching.map((x) => <li>{x}</li>)}</ul>
-      </div>
-      <div class="list-block">
-        <h2>Medium articles</h2>
-        <ul>{research.articles.map((a) => <li><a href={a.href} target="_blank" rel="noopener">{a.title}</a></li>)}</ul>
-      </div>
-    </div>
+  <section class="section">
+    <div class="sec-head"><h2>Guest lectures and talks</h2></div>
+    <ul class="plain-list">{research.talks.map((x) => <li>{x}</li>)}</ul>
+  </section>
+  <section class="section">
+    <div class="sec-head"><h2>Teaching assistantships / mentorships</h2></div>
+    <ul class="plain-list">{research.teaching.map((x) => <li>{x}</li>)}</ul>
+  </section>
+  <section class="section">
+    <div class="sec-head"><h2>Medium articles</h2></div>
+    <ul class="plain-list">{research.articles.map((a) => <li><a href={a.href} target="_blank" rel="noopener">{a.title}</a></li>)}</ul>
   </section>
 </Base>
 
 <script>
-  document.querySelectorAll<HTMLButtonElement>('[data-toggle]').forEach((btn) => {
+  // Abstract and Cite behave like tabs: one panel open at a time per publication.
+  document.querySelectorAll<HTMLButtonElement>('[data-panel]').forEach((btn) => {
     btn.addEventListener('click', () => {
-      const panel = document.getElementById(btn.getAttribute('aria-controls') || '');
-      if (!panel) return;
-      const open = btn.getAttribute('aria-expanded') !== 'true';
-      btn.setAttribute('aria-expanded', String(open));
-      panel.hidden = !open;
-      if (btn.dataset.toggle === 'abstract') btn.textContent = open ? 'Hide abstract' : 'Abstract';
+      const group = Array.from(btn.parentElement!.querySelectorAll<HTMLButtonElement>('[data-panel]'));
+      const opening = btn.getAttribute('aria-expanded') !== 'true';
+      group.forEach((b) => {
+        const on = b === btn && opening;
+        b.setAttribute('aria-expanded', String(on));
+        const panel = document.getElementById(b.getAttribute('aria-controls') || '');
+        if (panel) panel.hidden = !on;
+      });
     });
   });
   document.querySelectorAll<HTMLButtonElement>('[data-copy]').forEach((btn) => {

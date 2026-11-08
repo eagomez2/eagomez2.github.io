@@ -14,7 +14,7 @@ export const LANGUAGE_COLORS: Record<string, string> = {
 };
 
 /** Splits a comma-separated skills line. Items that themselves contain a comma are kept whole. */
-const KEEP_WHOLE = ['Safety, Privacy and Ethics in Data-driven algorithms'];
+const KEEP_WHOLE: string[] = [];
 export function splitTags(line: string): string[] {
   let rest = line;
   const tokens: string[] = [];

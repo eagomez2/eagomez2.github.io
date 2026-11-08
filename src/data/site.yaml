@@ -11,7 +11,7 @@ resume: /files/esteban-gomez-resume.pdf
 bio: I am Esteban Gómez, **researcher**, **audio programmer** and **sound engineer** currently based in Brussels, Belgium. With a broad range of interests, my experience spans real-time machine learning audio research, professional music recording and production for international live events, audio plugin development, and music performance. I am fascinated by everything that can be programmed/produce sound or has knobs/buttons/strings.
 skills:
 - label: Research interests
-  items: Real-time Machine Learning, Speech Processing, Noise Suppression, Artificial Bandwidth Extension, Dereverberation, Audio Watermarking, Speaker Verification, Antispoofing, Generative AI, Music Information Retrieval, Sound Synthesis, Immersive Audio, Safety, Privacy and Ethics in Data-driven algorithms
+  items: Real-time Machine Learning, Speech Processing, Noise Suppression, Artificial Bandwidth Extension, Dereverberation, Audio Watermarking, Speaker Verification, Antispoofing, Generative AI, Music Information Retrieval, Sound Synthesis, Immersive Audio, Safety & Privacy, Data-driven algorithms
 - label: Programming / Development
   items: C, C++, Rust, Python, PyTorch, TensorFlow, ONNX, MATLAB, JUCE, Max/MSP
 - label: Music / Sound Engineering / Sound Design

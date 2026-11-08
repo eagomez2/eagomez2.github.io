@@ -9,6 +9,7 @@ import '@fontsource/source-code-pro/500.css';
 import '../styles/global.css';
 import { site } from '../lib/data';
 import ThemeToggle from '../components/ThemeToggle.astro';
+import SocialIcon from '../components/SocialIcon.astro';
 import Analytics from '../components/Analytics.astro';
 import font400 from '@fontsource/source-sans-3/files/source-sans-3-latin-400-normal.woff2?url';
 import font600 from '@fontsource/source-sans-3/files/source-sans-3-latin-600-normal.woff2?url';
@@ -47,7 +48,7 @@ const nav = [
   <link rel="preload" href={font400} as="font" type="font/woff2" crossorigin>
   <link rel="preload" href={font600} as="font" type="font/woff2" crossorigin>
   {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
-  <meta name="color-scheme" content="light dark">
+  <meta name="color-scheme" content="light">
   <script is:inline>
     // Apply the saved theme before the page paints, so there is no flash.
     try { var t = localStorage.getItem('theme'); if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t; } catch (e) {}
@@ -61,7 +62,7 @@ const nav = [
      <div class="sidebar-inner">
       <div class="brand-wrap">
         <a class="brand" href="/">
-          <span class="wordmark"><span class="w-light">esteban</span><span class="w-bold">gómez</span></span>
+          <span class="wordmark"><span class="w-bold">esteban</span><span class="w-light">gómez</span></span>
           <span class="tagline">{site.tagline}</span>
         </a>
       </div>
@@ -79,7 +80,7 @@ const nav = [
       </nav>
       <div class="side-foot">
         <div class="side-social">
-          {site.social.map((s) => <a href={s.href} target="_blank" rel="noopener">{s.label}</a>)}
+          {site.social.map((s) => <a href={s.href} target="_blank" rel="noopener" aria-label={s.label} title={s.label}><SocialIcon name={s.label} /></a>)}
         </div>
         <ThemeToggle />
       </div>
@@ -89,7 +90,7 @@ const nav = [
     <header class="topbar">
       <div class="topbar-row">
         <a class="brand" href="/">
-          <span class="wordmark"><span class="w-light">esteban</span><span class="w-bold">gómez</span></span>
+          <span class="wordmark"><span class="w-bold">esteban</span><span class="w-light">gómez</span></span>
           <span class="tagline">{site.tagline}</span>
         </a>
         <div class="topbar-actions">
@@ -118,7 +119,7 @@ const nav = [
       <footer class="footer">
         <span>{site.copyright}</span>
         <span class="footer-links">
-          {site.social.map((s) => <a href={s.href} target="_blank" rel="noopener">{s.label}</a>)}
+          {site.social.map((s) => <a href={s.href} target="_blank" rel="noopener"><SocialIcon name={s.label} size={15} /><span>{s.label}</span></a>)}
         </span>
       </footer>
     </div>
@@ -134,7 +135,7 @@ const nav = [
     document.querySelectorAll<HTMLButtonElement>('.theme-toggle').forEach((b) => {
       b.addEventListener('click', () => {
         const root = document.documentElement;
-        const isDark = root.dataset.theme ? root.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+        const isDark = root.dataset.theme === 'dark';
         const next = isDark ? 'light' : 'dark';
         root.dataset.theme = next;
         try { localStorage.setItem('theme', next); } catch (e) {}
